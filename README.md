@@ -1,1 +1,1 @@
-# cookie-stand
+# cookie-stand : this website gives you small statistic about idea of our friend pat he want to sell some of cookies in diffrent locations 
