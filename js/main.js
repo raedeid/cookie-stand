@@ -75,12 +75,9 @@ for (var n=0;n<tableDetail.length;n++){
         var dtEl = document.createElement('td');
         trElDetail.appendChild(dtEl);
         dtEl.textContent = tableDetail[n][w];
-        // if (n<5 && w<14){
-        //     sumation = sumation + tableDetail [n][w];
-        // console.log(tableDetail[w][n])
+       
         }
 }
-// }total.push(sumation)
     
 var thEl = document.createElement('th');
 trEl.appendChild(thEl);
@@ -91,34 +88,4 @@ for (var i=0;i<hours.length;i++){
     trEl.appendChild(thEl);
     thEl.textContent = hours[i];   
 }
-
-function footer(name,minimum,maximum,average){
-    var footEl = document.createElement('tfoot');
-    table.appendChild(footEl);
-    var footEltr = document.createElement('tr');
-    footEl.appendChild(footEltr);
-    new_name = new city(name,minimum,maximum,average)
-    var name_element = document.createElement('th');
-    footEltr.appendChild(name_element)
-    name_element.textContent = new_name.location
-    for (var new_data=0;new_data<new_name.statistic.length;new_data++){
-        var name_element = document.createElement('td');
-        footEltr.appendChild(name_element);
-        name_element.textContent = new_name.statistic[new_data];
-        
-
-    }
-}
-var new_location = document.getElementById('cookieshop');
-function submit(event){
-    event.preventDefault()
-    var first = event.target.name.value;
-    var seconed = event.target.min.value;
-    var third = event.target.max.value;
-    var four = event.target.avg.value;
-    footer(first,parseInt(seconed),parseInt(third),parseFloat(four));
-    
-}
-new_location.addEventListener('submit',submit)
-
 
