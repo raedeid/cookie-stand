@@ -16,7 +16,7 @@ main{
 #address{
     margin-left: 626px;
     margin-top: auto;
-    color: #2BDDFF;
+    color:  rgba(43, 220, 255, 0.678);
     font-family: 'Abel', sans-serif;
 }
 
@@ -31,15 +31,15 @@ footer{
 
 #time{
     margin: 21px 20px 0px 653px;
-    color: #2BDDFF;
+    color: rgba(43, 220, 255, 0.678);
     font-family: 'Abel', sans-serif;
 
 }
 a{
     text-decoration:none ;
-    color: #2BDDFF;
+    color:  rgb(14, 89, 104);
     font-family: 'Abel', sans-serif;
-    font-style: oblique;
+    font-weight:Bold;
 }
 img{
     width: 730px;
@@ -53,7 +53,7 @@ img{
 p{
     font-size: 40px;
     font-family: 'Bree Serif', serif;
-    color: #54995E;
+    color: rgb(31, 75, 38);
 }
 #sta{
     margin-left: 586px;
