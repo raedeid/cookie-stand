@@ -41,22 +41,30 @@ function city (location,min,max,avg){
 }
 
 
-var Seattle = new city('Seattle',23,65,6.3,);
+var Seattle = new city('Seattle',23,65,6.3);
 var Tokyo = new city('Tokyo',3,24,1.2);
-var Dubai = new city('Dubai',11,38,3.7,);
-var Paris= new city ('Paris',20,38,2.3,);
-var Lima = new city ('Lima',2,16,4.6,);
+var Dubai = new city('Dubai',11,38,3.7);
+var Paris= new city ('Paris',20,38,2.3);
+var Lima = new city ('Lima',2,16,4.6);
 // console.log(Seattle.statistic);
 var tableDetail = [Seattle.statistic,Tokyo.statistic,Dubai.statistic,Paris.statistic,Lima.statistic,total];
 
 
-for (var n=0;n<Seattle.statistic.length-1;n++){
-    var total_vertical = 0
-    for (var w=0;w<tableDetail.length-1;w++){
-        total_vertical = total_vertical + tableDetail[w][n];    
-    }
-    total.push(total_vertical)
+function totalize(){
+    var total_horzintal = 0 
+    for (var n=0;n<Seattle.statistic.length-1;n++){
+        var total_vertical = 0;
+        for (var w=0;w<tableDetail.length-1;w++){
+            total_vertical = total_vertical + tableDetail[w][n];    
+        }
+        total.push(total_vertical);
+        total_horzintal = total_horzintal + total_vertical ;
+        }
+    total.push(total_horzintal);
+
 }
+totalize();
+
 console.log(tableDetail);
 var sumation = 0
 var cookie = document.getElementById('cookie');
@@ -93,10 +101,8 @@ for (var i=0;i<hours.length;i++){
 }
 
 function footer(name,minimum,maximum,average){
-    var footEl = document.createElement('tfoot');
-    table.appendChild(footEl);
     var footEltr = document.createElement('tr');
-    footEl.appendChild(footEltr);
+    table.appendChild(footEltr);
     new_name = new city(name,minimum,maximum,average)
     var name_element = document.createElement('th');
     footEltr.appendChild(name_element)
@@ -106,17 +112,57 @@ function footer(name,minimum,maximum,average){
         footEltr.appendChild(name_element);
         name_element.textContent = new_name.statistic[new_data];
         
-
+    }
+    tableDetail.splice(5,0,new_name.statistic);
+    total = []
+    totalize();
+    var new_row = document.createElement('tfoot');
+    table.appendChild(new_row)
+    var new_child = document.createElement('tr');
+    new_row.appendChild(new_child);
+    var new_coloum = document.createElement('th');
+    new_child.appendChild(new_coloum);
+    new_coloum.textContent = 'Total'
+    for (var q=0;q<total.length;q++){
+        new_coloum = document.createElement('td');
+        new_child.appendChild(new_coloum);
+        new_coloum.textContent = total[q]
     }
 }
 var new_location = document.getElementById('cookieshop');
 function submit(event){
     event.preventDefault()
     var first = event.target.name.value;
-    var seconed = event.target.min.value;
-    var third = event.target.max.value;
-    var four = event.target.avg.value;
-    footer(first,parseInt(seconed),parseInt(third),parseFloat(four));
+    if (first){
+        var seconed = parseInt( event.target.min.value);
+        if (seconed > 0){
+            var third = parseInt(event.target.max.value);
+            if(third && parseInt(third) > seconed){
+                var four = parseFloat(event.target.avg.value);
+                if (four<third && four>seconed){
+                    console.log(!(isNaN(four)))
+                    footer(first,seconed,third,four);
+
+                }else{
+                    alert('please add number for average');
+
+                }
+
+
+            }else if(third<seconed){
+                alert('please add maximum upper thn minumum ');
+            }else{
+                alert('please add number for maximum');
+            }
+
+
+        }else{
+            alert('please add number for minumum');
+        }
+    }else{
+        alert('please add your name');
+    }
+   
     
 }
 new_location.addEventListener('submit',submit)
